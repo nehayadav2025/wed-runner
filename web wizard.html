@@ -1,0 +1,1412 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AVINYA | Technika 6.0</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+  --bg:#080c19;
+  --panel:#11182b;
+  --panel2:#151e35;
+  --text:#f4f7ff;
+  --muted:#9ba8c2;
+  --cyan:#42e8ff;
+  --purple:#a78bfa;
+  --line:rgba(255,255,255,.10);
+}
+
+body.light {
+  --bg:#eef3ff;
+  --panel:#ffffff;
+  --panel2:#e5edff;
+  --text:#111a32;
+  --muted:#5d6a83;
+  --line:rgba(0,0,0,.12);
+}
+
+* {
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  scroll-behavior:smooth;
+}
+
+body {
+  background:var(--bg);
+  color:var(--text);
+  font-family:'Inter',sans-serif;
+  overflow-x:hidden;
+  transition:.3s;
+}
+
+button,input,select {
+  font:inherit;
+}
+
+/* BACKGROUND */
+
+.background-glow {
+  position:fixed;
+  width:350px;
+  height:350px;
+  border-radius:50%;
+  filter:blur(120px);
+  opacity:.20;
+  z-index:-1;
+  pointer-events:none;
+}
+
+.glow-one {
+  background:#00d9ff;
+  top:10%;
+  left:-150px;
+}
+
+.glow-two {
+  background:#9147ff;
+  top:50%;
+  right:-150px;
+}
+
+/* NAVBAR */
+
+nav {
+  height:75px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 7%;
+  background:rgba(8,12,25,.85);
+  backdrop-filter:blur(18px);
+  border-bottom:1px solid var(--line);
+  position:sticky;
+  top:0;
+  z-index:100;
+}
+
+body.light nav {
+  background:rgba(255,255,255,.88);
+}
+
+.logo {
+  font-family:'Orbitron',sans-serif;
+  font-size:19px;
+  font-weight:800;
+  letter-spacing:2px;
+}
+
+.logo span {
+  color:var(--cyan);
+}
+
+.nav-links {
+  display:flex;
+  align-items:center;
+  gap:28px;
+}
+
+.nav-links a {
+  color:var(--muted);
+  text-decoration:none;
+  font-size:13px;
+  font-weight:600;
+  transition:.3s;
+}
+
+.nav-links a:hover {
+  color:var(--cyan);
+}
+
+.nav-btn {
+  background:linear-gradient(100deg,#42e8ff,#a78bfa);
+  color:#080c19;
+  padding:11px 19px;
+  border:0;
+  border-radius:8px;
+  font-weight:800;
+  cursor:pointer;
+}
+
+.theme-btn {
+  border:1px solid var(--line);
+  color:var(--text);
+  background:var(--panel);
+  padding:9px 12px;
+  border-radius:8px;
+  cursor:pointer;
+}
+
+.menu-btn {
+  display:none;
+  color:var(--text);
+  font-size:25px;
+  background:none;
+  border:none;
+  cursor:pointer;
+}
+
+/* HERO */
+
+.hero {
+  min-height:680px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:100px 20px;
+  position:relative;
+  overflow:hidden;
+}
+
+.hero-content {
+  max-width:950px;
+  position:relative;
+  z-index:2;
+}
+
+.eyebrow {
+  display:inline-block;
+  color:var(--cyan);
+  border:1px solid rgba(66,232,255,.4);
+  background:rgba(66,232,255,.08);
+  border-radius:30px;
+  padding:9px 18px;
+  font-size:12px;
+  letter-spacing:2px;
+  margin-bottom:28px;
+}
+
+.hero h1 {
+  font-family:'Orbitron',sans-serif;
+  font-size:clamp(45px,9vw,100px);
+  font-weight:800;
+  letter-spacing:5px;
+  background:linear-gradient(90deg,#42e8ff,#a78bfa,#ff65cb);
+  -webkit-background-clip:text;
+  color:transparent;
+  line-height:1.2;
+}
+
+.hero h2 {
+  font-size:clamp(18px,3vw,29px);
+  margin:22px 0;
+}
+
+.hero p {
+  color:var(--muted);
+  line-height:1.9;
+  max-width:680px;
+  margin:auto;
+  font-size:15px;
+}
+
+.hero-actions {
+  margin-top:35px;
+  display:flex;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:15px;
+}
+
+.primary-btn,.secondary-btn {
+  padding:15px 26px;
+  border-radius:9px;
+  font-weight:700;
+  text-decoration:none;
+  cursor:pointer;
+  transition:.3s;
+}
+
+.primary-btn {
+  background:linear-gradient(100deg,#42e8ff,#a78bfa);
+  color:#080c19;
+  border:0;
+}
+
+.secondary-btn {
+  color:var(--text);
+  border:1px solid var(--line);
+  background:var(--panel);
+}
+
+.primary-btn:hover,.secondary-btn:hover {
+  transform:translateY(-4px);
+  box-shadow:0 8px 30px rgba(66,232,255,.2);
+}
+
+/* ORBIT ANIMATION */
+
+.orbit {
+  width:320px;
+  height:320px;
+  border:1px solid rgba(66,232,255,.22);
+  border-radius:50%;
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  animation:rotate 20s linear infinite;
+  z-index:0;
+  pointer-events:none;
+}
+
+.orbit::before {
+  content:'';
+  position:absolute;
+  width:15px;
+  height:15px;
+  background:var(--cyan);
+  border-radius:50%;
+  box-shadow:0 0 25px var(--cyan);
+  top:30px;
+  left:45px;
+}
+
+.orbit::after {
+  content:'';
+  position:absolute;
+  width:10px;
+  height:10px;
+  background:#a78bfa;
+  border-radius:50%;
+  box-shadow:0 0 25px #a78bfa;
+  bottom:40px;
+  right:30px;
+}
+
+@keyframes rotate {
+  to { transform:translate(-50%,-50%) rotate(360deg); }
+}
+
+/* COMMON */
+
+section {
+  padding:90px 8%;
+}
+
+.section-heading {
+  text-align:center;
+  margin-bottom:48px;
+}
+
+.section-heading small {
+  color:var(--cyan);
+  letter-spacing:3px;
+  font-weight:700;
+}
+
+.section-heading h2 {
+  font-family:'Orbitron',sans-serif;
+  font-size:clamp(25px,4vw,38px);
+  margin:15px 0;
+}
+
+.section-heading p {
+  color:var(--muted);
+  line-height:1.8;
+  max-width:650px;
+  margin:auto;
+}
+
+/* ABOUT */
+
+.about-grid {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:40px;
+  align-items:center;
+}
+
+.about-box {
+  background:var(--panel);
+  border:1px solid var(--line);
+  padding:35px;
+  border-radius:18px;
+}
+
+.about-box h3 {
+  color:var(--cyan);
+  font-size:25px;
+  margin-bottom:18px;
+}
+
+.about-box p {
+  color:var(--muted);
+  line-height:1.9;
+  font-size:14px;
+}
+
+.about-visual {
+  min-height:300px;
+  border-radius:18px;
+  border:1px solid var(--line);
+  background:
+    radial-gradient(circle at 50% 50%,rgba(66,232,255,.18),transparent 40%),
+    linear-gradient(135deg,#172747,#17112e);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+}
+
+.about-visual div {
+  font-family:'Orbitron',sans-serif;
+  font-size:35px;
+  color:var(--cyan);
+  text-shadow:0 0 30px var(--cyan);
+}
+
+/* STATS */
+
+.stats {
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:18px;
+  margin-top:35px;
+}
+
+.stat-card {
+  background:var(--panel2);
+  border:1px solid var(--line);
+  padding:22px;
+  text-align:center;
+  border-radius:12px;
+}
+
+.stat-card h3 {
+  color:var(--cyan);
+  font-size:27px;
+  font-family:'Orbitron',sans-serif;
+}
+
+.stat-card p {
+  color:var(--muted);
+  font-size:12px;
+  margin-top:8px;
+}
+
+/* EVENTS */
+
+.events-section {
+  background:rgba(100,120,180,.04);
+}
+
+.filter-bar {
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
+  justify-content:center;
+  margin-bottom:30px;
+}
+
+.filter-btn {
+  padding:10px 18px;
+  border-radius:25px;
+  border:1px solid var(--line);
+  background:var(--panel);
+  color:var(--muted);
+  cursor:pointer;
+  font-size:12px;
+}
+
+.filter-btn.active {
+  background:var(--cyan);
+  color:#080c19;
+  border-color:var(--cyan);
+  font-weight:800;
+}
+
+.search-box {
+  display:block;
+  width:min(450px,100%);
+  padding:14px 18px;
+  margin:0 auto 35px;
+  background:var(--panel);
+  color:var(--text);
+  border:1px solid var(--line);
+  border-radius:9px;
+  outline:none;
+}
+
+.event-grid {
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:20px;
+}
+
+.event-card {
+  background:var(--panel);
+  border:1px solid var(--line);
+  border-radius:15px;
+  padding:25px;
+  transition:.3s;
+  position:relative;
+  overflow:hidden;
+}
+
+.event-card:hover {
+  transform:translateY(-8px);
+  border-color:var(--cyan);
+  box-shadow:0 10px 35px rgba(66,232,255,.09);
+}
+
+.event-icon {
+  font-size:34px;
+  margin-bottom:20px;
+}
+
+.event-card small {
+  color:var(--cyan);
+  letter-spacing:1px;
+  font-size:10px;
+  font-weight:700;
+}
+
+.event-card h3 {
+  font-size:18px;
+  margin:12px 0;
+}
+
+.event-card p {
+  color:var(--muted);
+  line-height:1.7;
+  font-size:13px;
+  min-height:65px;
+}
+
+.event-card button {
+  margin-top:20px;
+  background:none;
+  color:var(--cyan);
+  border:none;
+  cursor:pointer;
+  font-weight:700;
+}
+
+.no-results {
+  text-align:center;
+  color:var(--muted);
+  grid-column:1/-1;
+  padding:30px;
+}
+
+/* INNOVATION */
+
+.innovation-grid {
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:20px;
+}
+
+.innovation-card {
+  padding:30px;
+  background:var(--panel);
+  border:1px solid var(--line);
+  border-radius:15px;
+}
+
+.innovation-card .icon {
+  font-size:35px;
+}
+
+.innovation-card h3 {
+  margin:18px 0 12px;
+}
+
+.innovation-card p {
+  color:var(--muted);
+  line-height:1.8;
+  font-size:13px;
+}
+
+/* SCHEDULE */
+
+.timeline {
+  max-width:750px;
+  margin:auto;
+  border-left:2px solid var(--cyan);
+  padding-left:30px;
+}
+
+.timeline-item {
+  background:var(--panel);
+  border:1px solid var(--line);
+  border-radius:12px;
+  padding:23px;
+  margin-bottom:25px;
+  position:relative;
+}
+
+.timeline-item::before {
+  content:'';
+  width:13px;
+  height:13px;
+  position:absolute;
+  left:-38px;
+  top:25px;
+  background:var(--cyan);
+  border-radius:50%;
+  box-shadow:0 0 15px var(--cyan);
+}
+
+.timeline-item h3 {
+  color:var(--cyan);
+  margin-bottom:8px;
+}
+
+.timeline-item p {
+  color:var(--muted);
+  font-size:13px;
+  line-height:1.7;
+}
+
+/* REGISTER */
+
+.register-section {
+  background:linear-gradient(130deg,rgba(66,232,255,.08),rgba(167,139,250,.10));
+}
+
+.register-panel {
+  max-width:650px;
+  margin:auto;
+  padding:35px;
+  background:var(--panel);
+  border:1px solid var(--line);
+  border-radius:18px;
+}
+
+.form-grid {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:17px;
+}
+
+.field {
+  display:flex;
+  flex-direction:column;
+  gap:9px;
+}
+
+.field.full {
+  grid-column:1/-1;
+}
+
+.field label {
+  font-size:12px;
+  color:var(--muted);
+}
+
+.field input,.field select {
+  padding:14px;
+  border-radius:8px;
+  background:var(--bg);
+  color:var(--text);
+  border:1px solid var(--line);
+  outline:none;
+  width:100%;
+}
+
+.field input:focus,.field select:focus {
+  border-color:var(--cyan);
+}
+
+.register-submit {
+  width:100%;
+  margin-top:23px;
+  padding:15px;
+  border:0;
+  border-radius:9px;
+  background:linear-gradient(100deg,#42e8ff,#a78bfa);
+  color:#080c19;
+  font-weight:800;
+  cursor:pointer;
+}
+
+.form-note {
+  text-align:center;
+  color:var(--muted);
+  font-size:11px;
+  margin-top:15px;
+}
+
+/* CONTACT */
+
+.contact-grid {
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:18px;
+}
+
+.contact-card {
+  background:var(--panel);
+  border:1px solid var(--line);
+  padding:25px;
+  border-radius:12px;
+  text-align:center;
+}
+
+.contact-card h3 {
+  color:var(--cyan);
+  margin-bottom:10px;
+}
+
+.contact-card p {
+  color:var(--muted);
+  font-size:13px;
+  line-height:1.7;
+}
+
+/* MODAL */
+
+.modal {
+  display:none;
+  position:fixed;
+  inset:0;
+  z-index:200;
+  background:rgba(0,0,0,.8);
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+}
+
+.modal.show {
+  display:flex;
+}
+
+.modal-content {
+  width:min(450px,100%);
+  background:var(--panel);
+  padding:30px;
+  border:1px solid var(--cyan);
+  border-radius:16px;
+  position:relative;
+}
+
+.close-modal {
+  position:absolute;
+  right:18px;
+  top:15px;
+  font-size:25px;
+  color:var(--muted);
+  background:none;
+  border:0;
+  cursor:pointer;
+}
+
+.modal-content h2 {
+  color:var(--cyan);
+  margin:20px 0 12px;
+}
+
+.modal-content p {
+  color:var(--muted);
+  line-height:1.8;
+}
+
+/* FOOTER */
+
+footer {
+  padding:35px 8%;
+  text-align:center;
+  background:#050813;
+  color:#a0abc0;
+  font-size:12px;
+  line-height:2;
+}
+
+footer strong {
+  color:var(--cyan);
+}
+
+/* RESPONSIVE */
+
+@media(max-width:850px) {
+  .event-grid,.innovation-grid {
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .about-grid {
+    grid-template-columns:1fr;
+  }
+}
+
+@media(max-width:650px) {
+  nav {
+    padding:0 5%;
+  }
+
+  .menu-btn {
+    display:block;
+  }
+
+  .nav-links {
+    display:none;
+    position:absolute;
+    top:75px;
+    left:0;
+    width:100%;
+    padding:25px;
+    background:var(--panel);
+    flex-direction:column;
+    align-items:flex-start;
+  }
+
+  .nav-links.open {
+    display:flex;
+  }
+
+  .event-grid,.innovation-grid,.contact-grid {
+    grid-template-columns:1fr;
+  }
+
+  .stats {
+    grid-template-columns:1fr;
+  }
+
+  .form-grid {
+    grid-template-columns:1fr;
+  }
+
+  .field.full {
+    grid-column:auto;
+  }
+
+  section {
+    padding:65px 6%;
+  }
+
+  .hero {
+    min-height:600px;
+  }
+
+  .orbit {
+    width:260px;
+    height:260px;
+  }
+
+  .register-panel {
+    padding:22px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="background-glow glow-one"></div>
+<div class="background-glow glow-two"></div>
+
+<!-- NAVIGATION -->
+
+<nav>
+  <div class="logo">AVI<span>NYA.</span></div>
+
+  <button class="menu-btn" id="menuBtn">☰</button>
+
+  <div class="nav-links" id="navLinks">
+    <a href="#home">Home</a>
+    <a href="#about">About</a>
+    <a href="#events">Events</a>
+    <a href="#innovation">Innovation</a>
+    <a href="#schedule">Experience</a>
+    <a href="#register">Register</a>
+    <button class="theme-btn" id="themeBtn">☀ / ☾</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+
+<header class="hero" id="home">
+
+  <div class="orbit"></div>
+
+  <div class="hero-content">
+
+    <div class="eyebrow">
+      ✦ TECHNIKA 6.0 | ARKA JAIN UNIVERSITY
+    </div>
+
+    <h1>AVINYA</h1>
+
+    <h2>Achieving Harmony Through Innovation</h2>
+
+    <p>
+      Welcome to the future where imagination meets technology.
+      Discover ideas, explore innovation, challenge your creativity
+      and become a part of the next technological revolution.
+    </p>
+
+    <div class="hero-actions">
+      <a href="#events" class="primary-btn">Explore Events ↗</a>
+      <a href="#about" class="secondary-btn">Discover AVINYA</a>
+    </div>
+
+  </div>
+</header>
+
+<!-- ABOUT -->
+
+<section id="about">
+
+  <div class="section-heading">
+    <small>OUR VISION</small>
+    <h2>Beyond Technology</h2>
+    <p>
+      Innovation is not just about creating something new.
+      It is about creating something meaningful.
+    </p>
+  </div>
+
+  <div class="about-grid">
+
+    <div class="about-box">
+      <h3>What is AVINYA?</h3>
+
+      <p>
+        AVINYA represents a future powered by creativity,
+        intelligence and collaboration. It brings together
+        technology and human imagination to create solutions
+        for tomorrow's challenges.
+
+        Technika 6.0 provides a platform for young innovators
+        to explore their potential, demonstrate their skills
+        and turn ideas into reality.
+      </p>
+
+      <div class="stats">
+        <div class="stat-card">
+          <h3>20</h3>
+          <p>Technical Events</p>
+        </div>
+
+        <div class="stat-card">
+          <h3>01</h3>
+          <p>Innovation Platform</p>
+        </div>
+
+        <div class="stat-card">
+          <h3>∞</h3>
+          <p>Possibilities</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="about-visual">
+      <div>
+        AVINYA<br>
+        <span style="font-size:13px;letter-spacing:5px">
+          CREATE THE FUTURE
+        </span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- EVENTS -->
+
+<section class="events-section" id="events">
+
+  <div class="section-heading">
+    <small>EXPLORE & COMPETE</small>
+    <h2>Discover The Events</h2>
+    <p>
+      Find your challenge. Showcase your skills.
+      Make your innovation count.
+    </p>
+  </div>
+
+  <div class="filter-bar">
+    <button class="filter-btn active" data-filter="all">All Events</button>
+    <button class="filter-btn" data-filter="coding">Coding</button>
+    <button class="filter-btn" data-filter="robotics">Robotics</button>
+    <button class="filter-btn" data-filter="innovation">Innovation</button>
+    <button class="filter-btn" data-filter="creative">Creative</button>
+  </div>
+
+  <input class="search-box" id="searchBox"
+    type="search" placeholder="🔍 Search your favourite event...">
+
+  <div class="event-grid" id="eventGrid"></div>
+
+</section>
+
+<!-- INNOVATION -->
+
+<section id="innovation">
+
+  <div class="section-heading">
+    <small>THE NEXT GENERATION</small>
+    <h2>Innovation Starts Here</h2>
+    <p>
+      Discover the technologies that are transforming
+      the world around us.
+    </p>
+  </div>
+
+  <div class="innovation-grid">
+
+    <div class="innovation-card">
+      <div class="icon">🤖</div>
+      <h3>Artificial Intelligence</h3>
+      <p>
+        Explore intelligent systems, automation and
+        the future of machine learning.
+      </p>
+    </div>
+
+    <div class="innovation-card">
+      <div class="icon">🌐</div>
+      <h3>Digital Revolution</h3>
+      <p>
+        Build powerful digital experiences through
+        web development and modern technology.
+      </p>
+    </div>
+
+    <div class="innovation-card">
+      <div class="icon">♻️</div>
+      <h3>Sustainable Future</h3>
+      <p>
+        Combine technology and environmental awareness
+        to create a better tomorrow.
+      </p>
+    </div>
+
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+
+<section id="schedule">
+
+  <div class="section-heading">
+    <small>YOUR JOURNEY</small>
+    <h2>The Innovation Journey</h2>
+    <p>
+      From your first idea to your final demonstration.
+    </p>
+  </div>
+
+  <div class="timeline">
+
+    <div class="timeline-item">
+      <h3>01 — Discover</h3>
+      <p>Explore the events and choose your challenge.</p>
+    </div>
+
+    <div class="timeline-item">
+      <h3>02 — Create</h3>
+      <p>Transform your ideas into innovative solutions.</p>
+    </div>
+
+    <div class="timeline-item">
+      <h3>03 — Compete</h3>
+      <p>Demonstrate your talent and challenge your limits.</p>
+    </div>
+
+    <div class="timeline-item">
+      <h3>04 — Inspire</h3>
+      <p>Share your ideas and become part of the innovation community.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- REGISTRATION -->
+
+<section class="register-section" id="register">
+
+  <div class="section-heading">
+    <small>BE A PART OF THE FUTURE</small>
+    <h2>Join The Innovation</h2>
+    <p>
+      Select your event and get ready to showcase your talent.
+    </p>
+  </div>
+
+  <div class="register-panel">
+
+    <form id="registrationForm">
+
+      <div class="form-grid">
+
+        <div class="field">
+          <label>Full Name</label>
+          <input type="text" id="name"
+            placeholder="Your name" required>
+        </div>
+
+        <div class="field">
+          <label>Email Address</label>
+          <input type="email" id="email"
+            placeholder="Your email" required>
+        </div>
+
+        <div class="field">
+          <label>Phone Number</label>
+          <input type="tel" id="phone"
+            placeholder="10-digit mobile number"
+            pattern="[0-9]{10}" required>
+        </div>
+
+        <div class="field">
+          <label>College Name</label>
+          <input type="text" id="college"
+            placeholder="College name" required>
+        </div>
+
+        <div class="field full">
+          <label>Select Your Event</label>
+          <select id="eventSelect" required>
+            <option value="">Choose an event</option>
+          </select>
+        </div>
+
+      </div>
+
+      <button class="register-submit" type="submit">
+        SUBMIT REGISTRATION ↗
+      </button>
+
+      <p class="form-note">
+        Demo registration — details are saved in this browser only.
+      </p>
+
+    </form>
+  </div>
+</section>
+
+<!-- CONTACT -->
+
+<section id="contact">
+
+  <div class="section-heading">
+    <small>GET IN TOUCH</small>
+    <h2>Connect With Us</h2>
+  </div>
+
+  <div class="contact-grid">
+
+    <div class="contact-card">
+      <h3>📍 Location</h3>
+      <p>ARKA JAIN University<br>Jharkhand, India</p>
+    </div>
+
+    <div class="contact-card">
+      <h3>🎓 Organised By</h3>
+      <p>School of Engineering & IT<br>Technika 6.0</p>
+    </div>
+
+    <div class="contact-card">
+      <h3>💡 Our Theme</h3>
+      <p>AVINYA<br>Harmony Through Innovation</p>
+    </div>
+
+  </div>
+</section>
+
+<footer>
+  <h2><strong>AVINYA.</strong></h2>
+  <p>TECHNIKA 6.0 | ARKA JAIN UNIVERSITY</p>
+  <p>Achieving Harmony Through Innovation</p>
+  <p>Designed with creativity & technology © 2026</p>
+</footer>
+
+<!-- EVENT MODAL -->
+
+<div class="modal" id="eventModal">
+  <div class="modal-content">
+    <button class="close-modal" id="closeModal">×</button>
+    <div id="modalIcon" style="font-size:40px"></div>
+    <h2 id="modalTitle"></h2>
+    <p id="modalDescription"></p>
+    <button class="primary-btn" id="modalRegister"
+      style="margin-top:22px">
+      Register for this event
+    </button>
+  </div>
+</div>
+
+<script>
+
+// EVENT DATA
+
+const events = [
+  {name:"Code Buster",icon:"💻",category:"coding",
+   description:"Challenge your programming skills, logical thinking and problem-solving abilities."},
+
+  {name:"Red Tech",icon:"🔴",category:"innovation",
+   description:"Design and present a technology-based hardware prototype."},
+
+  {name:"Web Wizard",icon:"🌐",category:"coding",
+   description:"Build an attractive, creative and responsive website using modern web technologies."},
+
+  {name:"Cyber Shield",icon:"🛡️",category:"coding",
+   description:"Explore cybersecurity, digital safety and security challenges."},
+
+  {name:"App Attack",icon:"📱",category:"coding",
+   description:"Showcase your mobile application development creativity."},
+
+  {name:"Data Dash",icon:"📊",category:"innovation",
+   description:"Discover patterns, insights and innovative solutions through data."},
+
+  {name:"Design Dash",icon:"🎨",category:"creative",
+   description:"Showcase your imagination and digital design skills."},
+
+  {name:"Robo Wars",icon:"🤖",category:"robotics",
+   description:"Experience robotics through exciting engineering challenges."},
+
+  {name:"Robo Race",icon:"🏎️",category:"robotics",
+   description:"Test robotic speed, control and performance."},
+
+  {name:"Robo Pick & Place",icon:"🦾",category:"robotics",
+   description:"Demonstrate robotic precision and automation."},
+
+  {name:"IntelliQuest",icon:"🧠",category:"innovation",
+   description:"Put your intelligence, technical knowledge and reasoning to the test."},
+
+  {name:"Brainstorm Battle",icon:"💡",category:"creative",
+   description:"Bring your ideas to life through creative thinking and collaboration."},
+
+  {name:"Circuit Crafter",icon:"⚡",category:"robotics",
+   description:"Explore electronics and circuit-building challenges."},
+
+  {name:"Electrofix Challenge",icon:"🔌",category:"robotics",
+   description:"Apply your electronics knowledge to solve technical problems."},
+
+  {name:"Junkyard Wars",icon:"🔧",category:"creative",
+   description:"Use creativity and available resources to build innovative solutions."},
+
+  {name:"AI Quizathon",icon:"🤖",category:"innovation",
+   description:"Test your knowledge of artificial intelligence and emerging technologies."},
+
+  {name:"EcoAI Challenge",icon:"🌱",category:"innovation",
+   description:"Explore AI-powered ideas for a sustainable future."},
+
+  {name:"Project Model Exhibition",icon:"🔬",category:"creative",
+   description:"Present your innovative projects and working models."},
+
+  {name:"Coding Ladder",icon:"⌨️",category:"coding",
+   description:"Climb through coding challenges and demonstrate programming skills."},
+
+  {name:"Load Bridging",icon:"🏗️",category:"creative",
+   description:"Apply engineering concepts through a structural challenge."}
+];
+
+// RENDER EVENTS
+
+const eventGrid = document.getElementById("eventGrid");
+const eventSelect = document.getElementById("eventSelect");
+
+function renderEvents(filter="all",search="") {
+
+  eventGrid.innerHTML="";
+
+  const filtered = events.filter(event => {
+    const categoryMatch =
+      filter==="all" || event.category===filter;
+
+    const searchMatch =
+      event.name.toLowerCase().includes(search.toLowerCase());
+
+    return categoryMatch && searchMatch;
+  });
+
+  if(filtered.length===0) {
+    eventGrid.innerHTML =
+      '<div class="no-results">No events found. Try another search.</div>';
+    return;
+  }
+
+  filtered.forEach(event => {
+
+    const card=document.createElement("div");
+    card.className="event-card";
+
+    const icon=document.createElement("div");
+    icon.className="event-icon";
+    icon.textContent=event.icon;
+
+    const category=document.createElement("small");
+    category.textContent=event.category.toUpperCase();
+
+    const heading=document.createElement("h3");
+    heading.textContent=event.name;
+
+    const description=document.createElement("p");
+    description.textContent=event.description;
+
+    const button=document.createElement("button");
+    button.textContent="Explore Event →";
+    button.addEventListener("click",()=>showModal(event));
+
+    card.append(icon,category,heading,description,button);
+    eventGrid.appendChild(card);
+  });
+}
+
+// FILTER BUTTONS
+
+let activeFilter="all";
+
+document.querySelectorAll(".filter-btn").forEach(button=>{
+
+  button.addEventListener("click",()=>{
+
+    document.querySelectorAll(".filter-btn")
+      .forEach(b=>b.classList.remove("active"));
+
+    button.classList.add("active");
+
+    activeFilter=button.dataset.filter;
+
+    renderEvents(activeFilter,
+      document.getElementById("searchBox").value);
+  });
+});
+
+// SEARCH
+
+document.getElementById("searchBox")
+.addEventListener("input",function(){
+
+  renderEvents(activeFilter,this.value);
+
+});
+
+// POPULATE REGISTRATION DROPDOWN
+
+events.forEach(event=>{
+
+  const option=document.createElement("option");
+  option.value=event.name;
+  option.textContent=event.name;
+  eventSelect.appendChild(option);
+
+});
+
+// MODAL
+
+const modal=document.getElementById("eventModal");
+
+function showModal(event){
+
+  document.getElementById("modalIcon").textContent=event.icon;
+  document.getElementById("modalTitle").textContent=event.name;
+  document.getElementById("modalDescription").textContent=event.description;
+
+  modal.classList.add("show");
+
+  document.getElementById("modalRegister").onclick=()=>{
+
+    eventSelect.value=event.name;
+    modal.classList.remove("show");
+
+    document.getElementById("register").scrollIntoView({
+      behavior:"smooth"
+    });
+  };
+}
+
+document.getElementById("closeModal").onclick=()=>{
+  modal.classList.remove("show");
+};
+
+modal.addEventListener("click",e=>{
+  if(e.target===modal) modal.classList.remove("show");
+});
+
+// REGISTRATION
+
+document.getElementById("registrationForm")
+.addEventListener("submit",function(e){
+
+  e.preventDefault();
+
+  const registration={
+    name:document.getElementById("name").value.trim(),
+    email:document.getElementById("email").value.trim(),
+    phone:document.getElementById("phone").value,
+    college:document.getElementById("college").value.trim(),
+    event:eventSelect.value
+  };
+
+  if(!registration.name || !registration.email ||
+     !registration.college || !registration.event) {
+    alert("Please fill all fields.");
+    return;
+  }
+
+  try {
+
+    const oldData=JSON.parse(
+      localStorage.getItem("avinyaRegistrations") || "[]"
+    );
+
+    oldData.push(registration);
+
+    localStorage.setItem(
+      "avinyaRegistrations",
+      JSON.stringify(oldData)
+    );
+
+    alert(
+      "Registration successful!\nWelcome, "+
+      registration.name+
+      "\nEvent: "+registration.event
+    );
+
+    this.reset();
+
+  } catch(error) {
+
+    alert("Unable to save registration in this browser.");
+
+  }
+});
+
+// THEME TOGGLE
+
+document.getElementById("themeBtn")
+.addEventListener("click",()=>{
+
+  document.body.classList.toggle("light");
+
+});
+
+// MOBILE MENU
+
+document.getElementById("menuBtn")
+.addEventListener("click",()=>{
+
+  document.getElementById("navLinks")
+    .classList.toggle("open");
+
+});
+
+// CLOSE MOBILE MENU ON NAVIGATION
+
+document.querySelectorAll(".nav-links a")
+.forEach(link=>{
+
+  link.addEventListener("click",()=>{
+    document.getElementById("navLinks")
+      .classList.remove("open");
+  });
+
+});
+
+// INITIAL RENDER
+
+renderEvents();
+
+</script>
+
+</body>
+</html>
